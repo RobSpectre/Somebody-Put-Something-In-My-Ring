@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask import request
+from flask import url_for
 from twilio import twiml
 
 
@@ -18,7 +19,7 @@ def voice():
         g.say("For Sheena Is A Punk Rocker, press 3.")
         g.say("For Outsider, press 4.")
     resp.pause(length="3")
-    path = url_for("/", filename="voice")
+    path = url_for('.voice')
     resp.redirect(path)
     return str(resp)
 
@@ -35,7 +36,7 @@ def play():
         song = url_for('static', filename='outsider.mp3')
     else:
         resp.say("I'm sorry - I did not understand your request.")
-        path = url_for("/", filename="voice")
+        path = url_for('.voice')
         resp.redirect(path)
         return resp
     resp.say("1.  2.  3.  4.")
