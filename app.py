@@ -16,25 +16,27 @@ def voice():
         g.say("For The K K K Took My Baby Away, press 1.")
         g.say("For Blitzkrieg Bop, press 2.")
         g.say("For Sheena Is A Punk Rocker, press 3.")
-        g.say("For I Wanna Be Your Boyfriend, press 4.")
+        g.say("For Outsider, press 4.")
     resp.pause(length="3")
-    resp.redirect("/voice")
+    path = url_for("/", filename="voice")
+    resp.redirect(path)
     return str(resp)
 
 
 @app.route('/play', methods=['POST'])
 def play():
-    if request.form['Input'] == '1':
-        song = "/music/the_kkk_took_my_baby_away.mp3"
-    elif request.form['Input'] == '2':
-        song = "/music/blitzkrieg_bop.mp3"
-    elif request.form['Input'] == '3':
-        song = "/music/sheena_is_a_punk_rocker.mp3"
-    elif request.form['Input'] == '4':
-        song = "/music/i_wanna_be_your_boyfriend.mp3"
+    if request.form['Digits'] == '1':
+        song = url_for('static', filename='the_kkk_took_my_baby_away.mp3')
+    elif request.form['Digits'] == '2':
+        song = url_for('static', filename='blitzkrieg_bop.mp3')
+    elif request.form['Digits'] == '3':
+        song = url_for('static', filename='sheena_is_a_punk_rocker.mp3')
+    elif request.form['Digits'] == '4':
+        song = url_for('static', filename='outsider.mp3')
     else:
         resp.say("I'm sorry - I did not understand your request.")
-        resp.redirect("/voice")
+        path = url_for("/", filename="voice")
+        resp.redirect(path)
         return resp
     resp.say("1.  2.  3.  4.")
     resp.play(song)
