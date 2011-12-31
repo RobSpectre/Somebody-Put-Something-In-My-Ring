@@ -26,6 +26,7 @@ def voice():
 
 @app.route('/play', methods=['POST'])
 def play():
+    resp = twiml.Response()
     if request.form['Digits'] == '1':
         song = url_for('static', filename='the_kkk_took_my_baby_away.mp3')
     elif request.form['Digits'] == '2':
