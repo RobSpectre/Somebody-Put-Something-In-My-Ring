@@ -23,25 +23,25 @@ Or go to the [website](http://www.somethinginmyring.com).
 
 Requires Python 2.5 or greater.
 
-1. Clone repo:
+1) Clone repo:
 
 <pre>
 git clone git@github.com:RobSpectre/Somebody-Put-Something-In-My-Ring.git
 </pre>
 
-2. Install dependencies:
+2) Install dependencies:
 
 <pre>
 cd Somebody-Put-Something-In-My-Ring
 pip install -r requirements.txt
 </pre>
 
-3. Login to [Twilio](https://www.twilio.com/login) (or [signup for
+3) Login to [Twilio](https://www.twilio.com/login) (or [signup for
 account](https://www.twilio.com/try-twilio?g=)).
 
-4. [Create new TwiML App](https://www.twilio.com/user/account/apps/add) for Somebody Put Something In My Ring.
+4) [Create new TwiML App](https://www.twilio.com/user/account/apps/add) for Somebody Put Something In My Ring.
 
-5. Configure local_settings.py with your Twilio account details or use
+5) Configure local_settings.py with your Twilio account details or use
 environment variables.
 
 <pre>
@@ -51,7 +51,7 @@ export RAMONES_APP_SID='APzzzzzzzzzzzzz'
 export RAMONES_CALLER_ID='+17778889999'
 </pre>
 
-6. Launch dev server.
+6) Launch dev server.
 
 <pre>
 python web.py
