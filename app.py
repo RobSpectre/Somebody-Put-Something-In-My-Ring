@@ -23,8 +23,9 @@ def index(name="Somebody Put Something In My Ring"):
         app.config['AUTH_TOKEN'])
     capability.allow_client_outgoing(app.config['RAMONES_APP_SID'])
     token = capability.generate()
+    url = url_for('.index')
 
-    return render_template('index.html', name=name, token=token)
+    return render_template('index.html', name=name, token=token, url=url)
 
 
 # Route for the TwiML Voice Application
