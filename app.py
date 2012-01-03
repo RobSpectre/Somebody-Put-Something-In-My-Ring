@@ -2,17 +2,37 @@ import os
 from flask import Flask
 from flask import request
 from flask import url_for
+from flask import render_template
 from twilio import twiml
+from twilio.util import TwilioCapability
+from local_settings import *
+
+# Declare and configure application
+app = Flask(__name__, static_url_path='/static')
+app.config['ACCOUNT_SID'] = ACCOUNT_SID
+app.config['AUTH_TOKEN'] = AUTH_TOKEN
+app.config['RAMONES_APP_SID'] = RAMONES_APP_SID
+app.config['RAMONES_CALLER_ID'] = RAMONES_CALLER_ID
 
 
-app = Flask(__name__)
+@app.route('/', methods=['GET', 'POST'])
+def index(name="Somebody Put Something In My Ring"):
+    # Generate Twilio client token
+    capability = TwilioCapability(app.config['ACCOUNT_SID'],
+        app.config['AUTH_TOKEN'])
+    capability.allow_client_outgoing(app.config['RAMONES_APP_SID'])
+    token = capability.generate()
+
+    return render_template('index.html', name=name, token=token)
 
 
 @app.route('/voice', methods=['POST'])
 def voice():
     resp = twiml.Response()
-    resp.say("Hey. Ho. Let's go.")
-    resp.say("I'm going to put something in your ring.")
+    resp.pause(length="0.25")
+    resp.say("Hay. Ho. Let's go.")
+    resp.say("Welcome to Somebody Put Something In My Ring, your emergency " \
+            "Ramones hotline.")
     with resp.gather(action="/play") as g:
         g.say("For The K K K Took My Baby Away, press 1.")
         g.say("For Blitzkrieg Bop, press 2.")
@@ -39,9 +59,16 @@ def play():
         resp.say("I'm sorry - I did not understand your request.")
         path = url_for('.voice')
         resp.redirect(path)
-        return resp
-    resp.say("1.  2.  3.  4.")
+        return str(resp)
+    resp.say("1 2 3 4.")
     resp.play(song)
+    return str(resp)
+
+
+@app.route('/sms', methods=['POST'])
+def sms():
+    resp = twiml.Response()
+    resp.sms("Call me to hear the best band in the world.")
     return str(resp)
 
 
