@@ -94,3 +94,7 @@ python tests
 * Author: [Rob Spectre](http://www.brooklynhacker.com)
 * Inspiration: [Michael Selvidge](http://www.twitter.com/selviano) and [Reid Butler](http://www.twitter.com/rbutlersf)'s [Callin' Oates](http://www.callinoates.com)
 * Powered by [Twilio](http://www.twilio.com).
+
+[![githalytics.com
+alpha](https://cruel-carlota.pagodabox.com/ac8f215760eead42d1b456d5b419d0fe
+"githalytics.com")](http://githalytics.com/RobSpectre/Somebody-Put-Something-In-My-Ring)
